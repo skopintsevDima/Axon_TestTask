@@ -1,8 +1,8 @@
-package com.test.cexiotest.ui.activity
+package com.test.axontest.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.test.cexiotest.R
+import com.test.axontest.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

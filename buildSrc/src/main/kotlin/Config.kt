@@ -37,7 +37,7 @@ object Config {
         const val minSdkVersion = 19
         const val targetSdkVersion = 29
         const val compileSdkVersion = 29
-        const val applicationId = "com.test.cexiotest"
+        const val applicationId = "com.test.axontest"
         const val versionCode = 1
         const val versionName = "1.0"
 
