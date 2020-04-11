@@ -1,7 +1,8 @@
 object Config {
+    //TODO: remove unused dependencies
     private object Versions {
         // Tools
-        const val kotlinVersion = "1.3.61"
+        const val kotlinVersion = "1.3.71"
         const val androidGradleVersion = "3.5.3"
         const val ktxCoreVersion = "1.1.0"
         const val navigationVersion = "2.2.0"
@@ -49,6 +50,15 @@ object Config {
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
         const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
         const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
+    }
+
+    object OpenCV {
+        const val buildToolsVersion = "29.0.2"
+        const val minSdkVersion = 19
+        const val targetSdkVersion = 29
+        const val compileSdkVersion = 29
+        const val versionCode = 34100
+        const val versionName = "3.4.10"
     }
 
     object ThirdPartyLibs {

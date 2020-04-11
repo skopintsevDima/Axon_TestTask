@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":opencv"))
+
     implementation(Config.Tools.kotlinStd)
     implementation(Config.Tools.ktxCore)
 

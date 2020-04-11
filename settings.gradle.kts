@@ -1,2 +1,2 @@
 rootProject.name = "Axon Test"
-include(":app")
+include(":app", ":opencv")
