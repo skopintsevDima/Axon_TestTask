@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btnWidth">140dp</dimen>
+    <dimen name="btnHeight">70dp</dimen>
+    <dimen name="photoHeight">250dp</dimen>
+    <dimen name="photosPadding">8dp</dimen>
+    <dimen name="photosMarginTop">100dp</dimen>
+    <dimen name="photoMargin">4dp</dimen>
+    <dimen name="niceBtnMarginBottom">100dp</dimen>
+
+    <dimen name="textHuge">24sp</dimen>
+    <dimen name="textBig">20sp</dimen>
+</resources>

@@ -1,4 +1,4 @@
-package com.test.axontest.ui.activity
+package com.test.axontest.main.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

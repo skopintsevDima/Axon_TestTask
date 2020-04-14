@@ -19,4 +19,8 @@ android {
             proguardFiles("proguard-rules.pro")
         }
     }
+
+    sourceSets {
+        getByName("main").jniLibs.srcDirs("src/main/jniLibs")
+    }
 }

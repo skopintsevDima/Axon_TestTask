@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/launcherFragment">
+
+    <fragment
+        android:id="@+id/launcherFragment"
+        android:name="com.test.axontest.launcher.presentation.LauncherFragment"
+        android:label="@string/launcher"
+        tools:layout="@layout/fragment_launcher">
+        <action
+            android:id="@+id/action_launcherFragment_to_detectedFaceFragment"
+            app:destination="@+id/detectedFaceFragment"/>
+        <action
+            android:id="@+id/action_launcherFragment_to_sessionsFragment"
+            app:destination="@+id/sessionsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detectedFaceFragment"
+        android:name="com.test.axontest.face.presentation.DetectedFaceFragment"
+        android:label="@string/detected_face"
+        tools:layout="@layout/fragment_detected_face">
+        <argument android:name="detectedFaceId" app:argType="long" android:defaultValue='-1L'/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sessionsFragment"
+        android:name="com.test.axontest.sessions.presentation.SessionsFragment"
+        android:label="@string/sessions"
+        tools:layout="@layout/fragment_sessions">
+    </fragment>
+</navigation>

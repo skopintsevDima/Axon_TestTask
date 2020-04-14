@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Axon Test</string>
+
+    <string name="start">Start</string>
+    <string name="list">List</string>
+    <string name="nice">Nice</string>
+    <string name="launcher">Launcher</string>
+    <string name="detected_face">Detected Face</string>
+    <string name="sessions">Sessions</string>
+
+    <string name="permissions_rationale">Hi! Give us camera permission please, so we could launch face detector for you)</string>
+    <string name="permissions_rationale_action">SURE</string>
+
+    <string name="face_detection_error">An error has occurred while face detection(</string>
+    <string name="loading_photo_error">An error has occurred while photo loading(</string>
 </resources>

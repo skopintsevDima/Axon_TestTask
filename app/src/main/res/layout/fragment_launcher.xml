@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startBtn"
+        android:layout_width="@dimen/btnWidth"
+        android:layout_height="@dimen/btnHeight"
+        android:text="@string/start"
+        android:textSize="@dimen/textHuge"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/listBtn"
+        android:layout_width="@dimen/btnWidth"
+        android:layout_height="@dimen/btnHeight"
+        android:text="@string/list"
+        android:textSize="@dimen/textHuge"/>
+
+</LinearLayout>

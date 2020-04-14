@@ -16,11 +16,7 @@ android {
         targetSdkVersion(Config.Android.targetSdkVersion)
         versionCode = Config.Android.versionCode
         versionName = Config.Android.versionName
-
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
-
-    dataBinding.isEnabled = true
 
     buildTypes {
         getByName("release") {
@@ -31,6 +27,12 @@ android {
 
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("main").jniLibs.srcDirs("src/main/jniLibs")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -41,20 +43,19 @@ dependencies {
     implementation(Config.Tools.ktxCore)
 
     implementation(Config.Android.appcompat)
+    implementation(Config.Android.material)
     implementation(Config.Android.constraintLayout)
+    implementation(Config.Android.viewModel)
+    implementation(Config.Android.room)
+    kapt(Config.Android.roomCompiler)
     implementation(Config.Android.navigationFragment)
     implementation(Config.Android.navigationUi)
-    implementation(Config.Android.legacySupport)
-    implementation(Config.Android.viewModel)
-    implementation(Config.Android.material)
+    implementation(Config.Android.cameraXCore)
+    implementation(Config.Android.cameraX)
+    implementation(Config.Android.cameraXLifecycle)
+    implementation(Config.Android.cameraXView)
 
     implementation(Config.ThirdPartyLibs.picasso)
-    implementation(Config.ThirdPartyLibs.okhttp)
-    implementation(Config.ThirdPartyLibs.retrofit)
-    implementation(Config.ThirdPartyLibs.koinCore)
-
-    testImplementation(Config.TestingLibs.junit)
-    testImplementation(Config.TestingLibs.androidxJunit)
-
-    androidTestImplementation(Config.TestingLibs.espressoCore)
+    implementation(Config.ThirdPartyLibs.dagger)
+    kapt(Config.ThirdPartyLibs.daggerCompiler)
 }
