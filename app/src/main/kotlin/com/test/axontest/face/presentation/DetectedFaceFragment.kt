@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Transformation
 import com.test.axontest.R
 import com.test.axontest.app.App
 import com.test.axontest.sessions.domain.model.DetectedFace
@@ -24,6 +23,7 @@ class DetectedFaceFragment: Fragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: DetectedFaceViewModel
 
+    //TODO: Support landscape mode
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,9 +63,10 @@ class DetectedFaceFragment: Fragment() {
                     .centerCrop()
                     .into(originalPhotoView)
 
-                val density = resources.displayMetrics.density
                 picasso.load(it.photoUri)
-                    .transform(CropTransformation(it.top, it.left, it.width, it.height, density))
+                    .transform(with(it) {
+                        CropTransformation(top.toPx(), left.toPx(), width.toPx(), height.toPx())
+                    })
                     .into(facePhotoView)
 
                 dateView.text = SimpleDateFormat(
@@ -76,4 +77,6 @@ class DetectedFaceFragment: Fragment() {
             { showBottomMsg(rootLayout, R.string.loading_photo_error) }
         )
     }
+
+    private fun Int.toPx() = (this * resources.displayMetrics.density).toInt()
 }

@@ -17,7 +17,7 @@ import com.test.axontest.R
 import com.test.axontest.app.App
 import com.test.axontest.detector.domain.util.DetectedFaceData
 import com.test.axontest.detector.domain.util.FaceDetectionAnalyzer
-import kotlinx.android.synthetic.main.activity_detector_x.*
+import kotlinx.android.synthetic.main.activity_detector.*
 import org.opencv.objdetect.CascadeClassifier
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -58,7 +58,7 @@ class DetectorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detector_x)
+        setContentView(R.layout.activity_detector)
         init()
     }
 
@@ -71,20 +71,20 @@ class DetectorActivity : AppCompatActivity() {
         displayManager.registerDisplayListener(displayListener, null)
 
         // Wait for the views to be properly laid out
-        viewFinder.post {
-            displayId = viewFinder.display.displayId
+        previewView.post {
+            displayId = previewView.display.displayId
             bindCameraUseCases()
         }
     }
 
     private fun bindCameraUseCases() {
-        val metrics = DisplayMetrics().also { viewFinder.display.getRealMetrics(it) }
+        val metrics = DisplayMetrics().also { previewView.display.getRealMetrics(it) }
         Log.d(TAG, "Screen metrics: ${metrics.widthPixels} x ${metrics.heightPixels}")
 
         val screenAspectRatio = aspectRatio(metrics.widthPixels, metrics.heightPixels)
         Log.d(TAG, "Preview aspect ratio: $screenAspectRatio")
 
-        val rotation = viewFinder.display.rotation
+        val rotation = previewView.display.rotation
 
         // Bind the CameraProvider to the LifeCycleOwner
         val cameraSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
@@ -132,7 +132,7 @@ class DetectorActivity : AppCompatActivity() {
                     imageAnalyzer
                 )
 
-                preview?.setSurfaceProvider(viewFinder.createSurfaceProvider(camera?.cameraInfo))
+                preview?.setSurfaceProvider(previewView.createSurfaceProvider(camera?.cameraInfo))
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }

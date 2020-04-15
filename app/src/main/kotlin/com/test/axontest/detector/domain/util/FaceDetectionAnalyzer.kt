@@ -2,10 +2,10 @@ package com.test.axontest.detector.domain.util
 
 import android.annotation.SuppressLint
 import android.media.Image
-import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import org.opencv.core.*
+import org.opencv.imgproc.Imgproc
 import org.opencv.objdetect.CascadeClassifier
 import kotlin.math.roundToInt
 
@@ -23,27 +23,26 @@ class FaceDetectionAnalyzer(
     private var absoluteFaceSize = 0
 
     @SuppressLint("UnsafeExperimentalUsageError")
-    override fun analyze(image: ImageProxy) {
+    override fun analyze(imageProxy: ImageProxy) {
         if (listener == null) {
-            image.close()
+            imageProxy.close()
             return
         }
 
         val frameTimestamp = System.currentTimeMillis()
-        image.image?.let {
-            val detectedFaces = detectFaces(it)
+        imageProxy.image?.let {
+            val imgGrayScaled = it.toGrayScale().rotate(imageProxy.imageInfo.rotationDegrees)
+            val detectedFaces = detectFaces(imgGrayScaled)
             if (detectedFaces.isNotEmpty()) {
                 listener.invoke(DetectedFaceData(detectedFaces[0], frameTimestamp))
             }
         }
-        image.close()
+        imageProxy.close()
     }
 
-    private fun detectFaces(image: Image): List<Rect> {
-        val imgGrayScaled = image.toGrayScale()
-
+    private fun detectFaces(imageGray: Mat): List<Rect> {
         if (absoluteFaceSize == 0) {
-            val height = imgGrayScaled.rows()
+            val height = imageGray.rows()
             if ((height * relativeFaceSize).roundToInt() > 0) {
                 absoluteFaceSize = (height * relativeFaceSize).roundToInt()
             }
@@ -51,7 +50,7 @@ class FaceDetectionAnalyzer(
 
         val faces = MatOfRect()
         faceDetector.detectMultiScale(
-            imgGrayScaled,
+            imageGray,
             faces,
             SCALE_FACTOR,
             MIN_NEIGHBORS,
@@ -62,16 +61,28 @@ class FaceDetectionAnalyzer(
         return faces.toList()
     }
 
-    private fun Image.toGrayScale(): Mat {
-        assert(planes[0].pixelStride == 1)
-        val yPlane = planes[0].buffer
-        val yPlaneStep = planes[0].rowStride
-        return Mat(height, width, CvType.CV_8UC1, yPlane, yPlaneStep.toLong())
-    }
-
     companion object {
-        const val SCALE_FACTOR = 1.1
-        const val MIN_NEIGHBORS = 2
-        const val FLAGS = 2
+        private const val SCALE_FACTOR = 1.1
+        private const val MIN_NEIGHBORS = 2
+        private const val FLAGS = 2
+
+        private fun Image.toGrayScale(): Mat {
+            assert(planes[0].pixelStride == 1)
+            val yPlane = planes[0].buffer
+            val yPlaneStep = planes[0].rowStride
+            return Mat(height, width, CvType.CV_8UC1, yPlane, yPlaneStep.toLong())
+                .also { Imgproc.equalizeHist(it, it) }
+        }
+
+        private fun Mat.rotate(angle: Int): Mat {
+            when (angle) {
+                0 -> Unit
+                90 -> { Core.rotate(this, this, Core.ROTATE_90_CLOCKWISE) }
+                180 -> { Core.rotate(this, this, Core.ROTATE_180) }
+                270 -> { Core.rotate(this, this, Core.ROTATE_90_COUNTERCLOCKWISE) }
+                else -> Unit
+            }
+            return this
+        }
     }
 }

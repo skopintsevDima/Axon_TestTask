@@ -26,7 +26,7 @@ class DetectorModule {
     fun provideFaceDetector(context: Context): CascadeClassifier {
         context.run {
             try {
-                val inputStream = resources.openRawResource(R.raw.lbpcascade_frontalface)
+                val inputStream = resources.openRawResource(R.raw.lbpcascade_frontalface_improved)
                 val cascadeDir = getDir(DIR_NAME_CASCADE, Context.MODE_PRIVATE)
                 val cascadeFile = File(cascadeDir,
                     FILE_NAME_MODEL_CASCADE
@@ -70,7 +70,6 @@ class DetectorModule {
     companion object {
         const val TAG = "UtilsModule"
         const val DIR_NAME_CASCADE = "cascade"
-        //TODO: Delete unused cascade models.
         const val FILE_NAME_MODEL_CASCADE = "lbpcascade_frontalface_improved.xml"
     }
 }
