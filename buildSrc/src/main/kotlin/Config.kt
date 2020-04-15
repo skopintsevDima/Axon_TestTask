@@ -14,6 +14,7 @@ object Config {
         const val roomVersion = "2.2.5"
         const val cameraXVersion = "1.0.0-beta02"
         const val cameraXViewVersion = "1.0.0-alpha09"
+        const val pagingVersion = "2.1.2"
 
         // Third-party libs
         const val picassoVersion = "2.71828"
@@ -49,6 +50,7 @@ object Config {
         const val cameraX = "androidx.camera:camera-camera2:${Versions.cameraXVersion}"
         const val cameraXLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraXVersion}"
         const val cameraXView = "androidx.camera:camera-view:${Versions.cameraXViewVersion}"
+        const val paging = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
     }
 
     object OpenCV {

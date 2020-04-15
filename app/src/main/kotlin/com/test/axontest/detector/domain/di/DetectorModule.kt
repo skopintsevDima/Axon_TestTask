@@ -15,7 +15,7 @@ import org.opencv.objdetect.CascadeClassifier
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.concurrent.Executors
+import java.util.concurrent.Executor
 import javax.inject.Inject
 
 @Module
@@ -58,8 +58,10 @@ class DetectorModule {
     @ActivityScope
     @Provides
     @Inject
-    fun provideSaveDetectedFaceUseCase(repository: DetectedFacesRepository): SaveDetectedFaceUseCase =
-        SaveDetectedFaceUseCaseImpl(repository, Executors.newSingleThreadExecutor())
+    fun provideSaveDetectedFaceUseCase(
+        repository: DetectedFacesRepository,
+        ioExecutor: Executor
+    ): SaveDetectedFaceUseCase = SaveDetectedFaceUseCaseImpl(repository, ioExecutor)
 
     @ActivityScope
     @Provides

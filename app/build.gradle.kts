@@ -54,6 +54,7 @@ dependencies {
     implementation(Config.Android.cameraX)
     implementation(Config.Android.cameraXLifecycle)
     implementation(Config.Android.cameraXView)
+    implementation(Config.Android.paging)
 
     implementation(Config.ThirdPartyLibs.picasso)
     implementation(Config.ThirdPartyLibs.dagger)

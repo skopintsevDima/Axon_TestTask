@@ -7,6 +7,7 @@
     <string name="launcher">Launcher</string>
     <string name="detected_face">Detected Face</string>
     <string name="sessions">Sessions</string>
+    <string name="session_number">(%1$s)</string>
 
     <string name="permissions_rationale">Hi! Give us camera permission please, so we could launch face detector for you)</string>
     <string name="permissions_rationale_action">SURE</string>

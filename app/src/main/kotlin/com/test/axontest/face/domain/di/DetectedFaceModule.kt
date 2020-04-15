@@ -8,7 +8,7 @@ import com.test.axontest.face.domain.usecase.GetDetectedFaceUseCase
 import com.test.axontest.face.domain.usecase.GetDetectedFaceUseCaseImpl
 import dagger.Module
 import dagger.Provides
-import java.util.concurrent.Executors
+import java.util.concurrent.Executor
 import javax.inject.Inject
 
 @Module
@@ -16,8 +16,10 @@ class DetectedFaceModule {
     @FragmentScope
     @Provides
     @Inject
-    fun provideGetDetectedFaceUseCase(repository: DetectedFaceRepository): GetDetectedFaceUseCase =
-        GetDetectedFaceUseCaseImpl(repository, Executors.newSingleThreadExecutor())
+    fun provideGetDetectedFaceUseCase(
+        repository: DetectedFaceRepository,
+        ioExecutor: Executor
+    ): GetDetectedFaceUseCase = GetDetectedFaceUseCaseImpl(repository, ioExecutor)
 
     @FragmentScope
     @Provides

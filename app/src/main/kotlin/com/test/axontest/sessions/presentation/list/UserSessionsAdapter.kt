@@ -2,11 +2,12 @@ package com.test.axontest.sessions.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.test.axontest.R
 import com.test.axontest.sessions.domain.model.UserSession
 
-class UserSessionsAdapter(private var userSessions: List<UserSession>): RecyclerView.Adapter<UserSessionViewHolder>() {
+class UserSessionsAdapter : PagedListAdapter<UserSession, UserSessionViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserSessionViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val userSessionItemView = layoutInflater.inflate(R.layout.item_user_session, parent, false)
@@ -14,13 +15,16 @@ class UserSessionsAdapter(private var userSessions: List<UserSession>): Recycler
     }
 
     override fun onBindViewHolder(holder: UserSessionViewHolder, position: Int) {
-        holder.bind(userSessions[position])
+        getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int = userSessions.size
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<UserSession>() {
+            override fun areItemsTheSame(oldItem: UserSession, newItem: UserSession): Boolean =
+                oldItem.id == newItem.id
 
-    fun setItems(userSession: List<UserSession>) {
-        this.userSessions = userSession
-        notifyDataSetChanged()
+            override fun areContentsTheSame(oldItem: UserSession, newItem: UserSession): Boolean =
+                oldItem == newItem
+        }
     }
 }

@@ -7,9 +7,8 @@ import com.test.axontest.detector.domain.util.DetectedFaceData
 import com.test.axontest.detector.domain.model.DetectedFace
 import com.test.axontest.detector.domain.repository.DetectedFacesRepository
 import java.util.concurrent.Executor
-import javax.inject.Inject
 
-class SaveDetectedFaceUseCaseImpl @Inject constructor(
+class SaveDetectedFaceUseCaseImpl(
     private val detectedFacesRepository: DetectedFacesRepository,
     private val executor: Executor
 ) : SaveDetectedFaceUseCase {

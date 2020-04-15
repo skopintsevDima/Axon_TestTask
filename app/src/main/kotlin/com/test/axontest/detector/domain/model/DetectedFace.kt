@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DetectedFace(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val top: Int,
     val left: Int,
     val width: Int,

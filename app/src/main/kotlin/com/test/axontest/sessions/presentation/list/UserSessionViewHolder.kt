@@ -11,16 +11,20 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class UserSessionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val sessionNumber = itemView.findViewById<AppCompatTextView>(R.id.sessionNumber)
     private val sessionDateView = itemView.findViewById<AppCompatTextView>(R.id.sessionDateView)
     private val sessionPhotoView = itemView.findViewById<AppCompatImageView>(R.id.sessionPhotoView)
 
     fun bind(userSession: UserSession) {
+        val resources = itemView.context.resources
+
+        sessionNumber.text = resources.getString(R.string.session_number, userSession.id.toString())
+
         sessionDateView.text = SimpleDateFormat(
             "yyyy-MM-dd HH:mm:ss",
             Locale.getDefault()
         ).format(userSession.timestamp)
 
-        val resources = itemView.context.resources
         val sessionPhotoViewWidthPx = resources.getDimensionPixelSize(R.dimen.sessionPhotoWidth)
         val sessionPhotoViewHeightPx = resources.getDimensionPixelSize(R.dimen.sessionPhotoHeight)
         Picasso.get()

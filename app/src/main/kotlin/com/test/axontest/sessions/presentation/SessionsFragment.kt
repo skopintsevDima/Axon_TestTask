@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,6 @@ class SessionsFragment: Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: SessionsViewModel
-    private var userSessionsAdapter: UserSessionsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,25 +42,23 @@ class SessionsFragment: Fragment() {
     }
 
     private fun initUI() {
-        activity?.let {
-            val llm = LinearLayoutManager(it)
+        activity?.let { activity ->
+            val llm = LinearLayoutManager(activity)
             llm.orientation = RecyclerView.VERTICAL
             sessionsView.layoutManager = llm
-            sessionsView.addItemDecoration(DividerItemDecoration(it, llm.orientation))
+            sessionsView.addItemDecoration(DividerItemDecoration(activity, llm.orientation))
             viewModel.loadSessions().observe(viewLifecycleOwner, Observer { handleSessionsRes(it) })
         }
     }
 
-    private fun handleSessionsRes(sessionsResult: Result<List<UserSession>>) {
+    private fun handleSessionsRes(sessionsResult: Result<PagedList<UserSession>>) {
         sessionsResult.fold(
-            { updateList(it) },
+            {
+                val adapter = UserSessionsAdapter()
+                adapter.submitList(it)
+                sessionsView.adapter = adapter
+            },
             { showBottomMsg(rootLayout, R.string.loading_sessions_error) }
         )
-    }
-
-    private fun updateList(userSessions: List<UserSession>) {
-        if (userSessionsAdapter == null) { userSessionsAdapter = UserSessionsAdapter(userSessions) }
-        sessionsView.adapter = userSessionsAdapter
-        userSessionsAdapter?.setItems(userSessions)
     }
 }
