@@ -1,12 +1,11 @@
 package com.test.axontest.detector.domain.usecase
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.test.axontest.detector.domain.util.DetectedFaceData
-import com.test.axontest.sessions.domain.model.DetectedFace
-import com.test.axontest.sessions.domain.repository.DetectedFacesRepository
+import com.test.axontest.detector.domain.model.DetectedFace
+import com.test.axontest.detector.domain.repository.DetectedFacesRepository
 import java.util.concurrent.Executor
 import javax.inject.Inject
 

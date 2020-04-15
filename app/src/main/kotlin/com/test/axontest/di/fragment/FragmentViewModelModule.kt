@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.test.axontest.di.ViewModelFactory
 import com.test.axontest.di.ViewModelKey
 import com.test.axontest.face.presentation.DetectedFaceViewModel
+import com.test.axontest.sessions.presentation.SessionsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -20,4 +21,10 @@ abstract class FragmentViewModelModule {
     @IntoMap
     @ViewModelKey(DetectedFaceViewModel::class)
     internal abstract fun detectedFaceViewModel(viewModel: DetectedFaceViewModel): ViewModel
+
+    @Binds
+    @FragmentScope
+    @IntoMap
+    @ViewModelKey(SessionsViewModel::class)
+    internal abstract fun sessionsViewModel(viewModel: SessionsViewModel): ViewModel
 }

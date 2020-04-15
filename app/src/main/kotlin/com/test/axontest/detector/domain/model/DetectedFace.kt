@@ -1,4 +1,4 @@
-package com.test.axontest.sessions.domain.model
+package com.test.axontest.detector.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

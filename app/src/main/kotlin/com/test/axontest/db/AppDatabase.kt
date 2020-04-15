@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.test.axontest.db.AppDatabase.Companion.APP_DATABASE_VERSION
 import com.test.axontest.db.dao.DetectedFaceDao
-import com.test.axontest.sessions.domain.model.DetectedFace
+import com.test.axontest.detector.domain.model.DetectedFace
 
 @Database(entities = [DetectedFace::class], version = APP_DATABASE_VERSION)
 abstract class AppDatabase : RoomDatabase() {

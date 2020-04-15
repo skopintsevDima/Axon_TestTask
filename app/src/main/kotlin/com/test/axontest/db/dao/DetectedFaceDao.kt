@@ -1,7 +1,7 @@
 package com.test.axontest.db.dao
 
 import androidx.room.*
-import com.test.axontest.sessions.domain.model.DetectedFace
+import com.test.axontest.detector.domain.model.DetectedFace
 
 @Dao
 interface DetectedFaceDao {

@@ -7,8 +7,8 @@ import com.test.axontest.db.dao.DetectedFaceDao
 import com.test.axontest.detector.domain.usecase.SaveDetectedFaceUseCase
 import com.test.axontest.detector.domain.usecase.SaveDetectedFaceUseCaseImpl
 import com.test.axontest.di.activity.ActivityScope
-import com.test.axontest.sessions.data.repository.DetectedFacesRepositoryImpl
-import com.test.axontest.sessions.domain.repository.DetectedFacesRepository
+import com.test.axontest.detector.data.repository.DetectedFacesRepositoryImpl
+import com.test.axontest.detector.domain.repository.DetectedFacesRepository
 import dagger.Module
 import dagger.Provides
 import org.opencv.objdetect.CascadeClassifier

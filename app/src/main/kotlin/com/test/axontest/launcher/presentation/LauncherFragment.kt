@@ -1,6 +1,7 @@
 package com.test.axontest.launcher.presentation
 
 import android.Manifest
+import android.app.Activity.RESULT_FIRST_USER
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -95,7 +96,7 @@ class LauncherFragment: Fragment() {
                         val destination = actionLauncherFragmentToDetectedFaceFragment(detectedFaceId)
                         findNavController().navigate(destination)
                     }
-                } else {
+                } else if (resultCode == RESULT_FIRST_USER){
                     showBottomMsg(rootLayout, R.string.face_detection_error)
                 }
             }

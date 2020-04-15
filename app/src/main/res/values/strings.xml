@@ -13,4 +13,5 @@
 
     <string name="face_detection_error">An error has occurred while face detection(</string>
     <string name="loading_photo_error">An error has occurred while photo loading(</string>
+    <string name="loading_sessions_error">An error has occurred while loading user sessions(</string>
 </resources>

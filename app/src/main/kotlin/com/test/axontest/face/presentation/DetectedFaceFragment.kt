@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.test.axontest.R
 import com.test.axontest.app.App
-import com.test.axontest.sessions.domain.model.DetectedFace
+import com.test.axontest.detector.domain.model.DetectedFace
 import com.test.axontest.util.showBottomMsg
 import kotlinx.android.synthetic.main.fragment_detected_face.*
 import java.text.SimpleDateFormat
@@ -59,11 +59,15 @@ class DetectedFaceFragment: Fragment() {
             {
                 val picasso = Picasso.get()
                 picasso.load(it.photoUri)
+                    .placeholder(R.drawable.ic_image_grey_24dp)
+                    .error(R.drawable.ic_broken_image_grey_24dp)
                     .resize(originalPhotoView.width, originalPhotoView.height)
                     .centerCrop()
                     .into(originalPhotoView)
 
                 picasso.load(it.photoUri)
+                    .placeholder(R.drawable.ic_image_grey_24dp)
+                    .error(R.drawable.ic_broken_image_grey_24dp)
                     .transform(with(it) {
                         CropTransformation(top.toPx(), left.toPx(), width.toPx(), height.toPx())
                     })

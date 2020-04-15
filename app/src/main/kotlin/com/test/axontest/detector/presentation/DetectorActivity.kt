@@ -177,7 +177,7 @@ class DetectorActivity : AppCompatActivity() {
                 val resultData = Intent().apply { putExtra(DETECTED_FACE_ID, it) }
                 setResult(RESULT_OK, resultData)
             },
-            { setResult(Activity.RESULT_CANCELED) }
+            { setResult(Activity.RESULT_FIRST_USER) }
         )
         finish()
     }

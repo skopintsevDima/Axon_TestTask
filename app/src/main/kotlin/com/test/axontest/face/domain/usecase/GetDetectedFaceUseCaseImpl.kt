@@ -3,7 +3,7 @@ package com.test.axontest.face.domain.usecase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.test.axontest.face.domain.repository.DetectedFaceRepository
-import com.test.axontest.sessions.domain.model.DetectedFace
+import com.test.axontest.detector.domain.model.DetectedFace
 import java.util.concurrent.Executor
 
 class GetDetectedFaceUseCaseImpl(
