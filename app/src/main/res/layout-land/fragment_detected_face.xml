@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/photosLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/detectedPhotosPadding">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/originalPhotoView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/detectedPhotoHeight"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/detectedPhotoMargin"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/facePhotoView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/detectedPhotoHeight"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/detectedPhotoMargin"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/photosLayout"
+        tools:text="2001-07-04 12:08:56"
+        android:textSize="@dimen/textBig"
+        android:textColor="@android:color/black"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOk"
+        android:layout_width="@dimen/btnWidth"
+        android:layout_height="@dimen/btnHeight"
+        android:text="@string/nice"
+        android:textSize="@dimen/textHuge"
+        app:layout_constraintTop_toBottomOf="@id/dateView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

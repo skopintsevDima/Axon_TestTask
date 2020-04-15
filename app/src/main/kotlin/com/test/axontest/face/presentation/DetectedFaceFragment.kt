@@ -23,7 +23,6 @@ class DetectedFaceFragment: Fragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: DetectedFaceViewModel
 
-    //TODO: Support landscape mode
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -10,7 +10,6 @@ import org.opencv.android.InstallCallbackInterface
 import org.opencv.android.LoaderCallbackInterface
 import org.opencv.android.OpenCVLoader
 
-//TODO: Remove all unused code -> then clean project.
 class App: Application() {
     override fun onCreate() {
         super.onCreate()
