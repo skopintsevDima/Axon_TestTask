@@ -2,11 +2,17 @@
 <resources>
     <dimen name="btnWidth">140dp</dimen>
     <dimen name="btnHeight">70dp</dimen>
-    <dimen name="photoHeight">250dp</dimen>
-    <dimen name="photosPadding">8dp</dimen>
-    <dimen name="photosMarginTop">100dp</dimen>
-    <dimen name="photoMargin">4dp</dimen>
+    <dimen name="detectedPhotoHeight">250dp</dimen>
+    <dimen name="detectedPhotosPadding">8dp</dimen>
+    <dimen name="detectedPhotosMarginTop">100dp</dimen>
+    <dimen name="detectedPhotoMargin">4dp</dimen>
     <dimen name="niceBtnMarginBottom">100dp</dimen>
+    <dimen name="userSessionItemHeight">150dp</dimen>
+    <dimen name="userSessionItemMargin">8dp</dimen>
+    <dimen name="sessionItemContentPadding">8dp</dimen>
+    <dimen name="sessionPhotoWidth">90dp</dimen>
+    <dimen name="sessionPhotoHeight">130dp</dimen>
+    <dimen name="sessionItemCornerRadius">8dp</dimen>
 
     <dimen name="textHuge">24sp</dimen>
     <dimen name="textBig">20sp</dimen>

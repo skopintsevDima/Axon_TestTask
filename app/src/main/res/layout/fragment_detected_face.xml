@@ -15,22 +15,22 @@
         android:weightSum="2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/photosMarginTop"
-        android:padding="@dimen/photosPadding">
+        android:layout_marginTop="@dimen/detectedPhotosMarginTop"
+        android:padding="@dimen/detectedPhotosPadding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/originalPhotoView"
             android:layout_width="0dp"
+            android:layout_height="@dimen/detectedPhotoHeight"
             android:layout_weight="1"
-            android:layout_height="@dimen/photoHeight"
-            android:layout_marginEnd="@dimen/photoMargin"/>
+            android:layout_marginEnd="@dimen/detectedPhotoMargin"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/facePhotoView"
             android:layout_width="0dp"
+            android:layout_height="@dimen/detectedPhotoHeight"
             android:layout_weight="1"
-            android:layout_height="@dimen/photoHeight"
-            android:layout_marginStart="@dimen/photoMargin"/>
+            android:layout_marginStart="@dimen/detectedPhotoMargin"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

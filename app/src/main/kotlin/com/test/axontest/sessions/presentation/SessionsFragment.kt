@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.axontest.R
 import com.test.axontest.app.App
 import com.test.axontest.sessions.domain.model.UserSession
+import com.test.axontest.sessions.presentation.list.UserSessionsAdapter
 import com.test.axontest.util.showBottomMsg
 import kotlinx.android.synthetic.main.fragment_sessions.*
 import javax.inject.Inject
@@ -19,6 +22,7 @@ class SessionsFragment: Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: SessionsViewModel
+    private var userSessionsAdapter: UserSessionsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,17 +42,25 @@ class SessionsFragment: Fragment() {
     }
 
     private fun initUI() {
-        viewModel.loadSessions().observe(viewLifecycleOwner, Observer { handleSessionsRes(it) })
+        activity?.let {
+            val llm = LinearLayoutManager(it)
+            llm.orientation = RecyclerView.VERTICAL
+            sessionsView.layoutManager = llm
+            sessionsView.addItemDecoration(DividerItemDecoration(it, llm.orientation))
+            viewModel.loadSessions().observe(viewLifecycleOwner, Observer { handleSessionsRes(it) })
+        }
     }
 
     private fun handleSessionsRes(sessionsResult: Result<List<UserSession>>) {
         sessionsResult.fold(
-            {
-                activity?.let { activity ->
-                    Toast.makeText(activity, it.toString(), Toast.LENGTH_LONG).show()
-                }
-            },
+            { updateList(it) },
             { showBottomMsg(rootLayout, R.string.loading_sessions_error) }
         )
+    }
+
+    private fun updateList(userSessions: List<UserSession>) {
+        if (userSessionsAdapter == null) { userSessionsAdapter = UserSessionsAdapter(userSessions) }
+        sessionsView.adapter = userSessionsAdapter
+        userSessionsAdapter?.setItems(userSessions)
     }
 }
